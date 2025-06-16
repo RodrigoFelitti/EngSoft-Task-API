@@ -1,0 +1,9 @@
+[2025-06-15 22:07:54] Authentication attempt - Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NTAwMzYwNzQsImV4cCI6MTc1MDAzOTY3NH0.cFZzK1ohaWGprJWecLfN5bx_tYFECwoB9it_EXXOdbo
+[2025-06-15 22:07:54] Authentication successful - User: {"iat":1750036074,"exp":1750039674}
+[2025-06-15 22:07:55] Error creating user: ENOENT: no such file or directory, rename 'C:\Users\rodri\Desktop\Learn-node\.db.json.tmp' -> 'C:\Users\rodri\Desktop\Learn-node\db.json'
+[2025-06-15 22:07:55] Authentication attempt - Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NTAwMzYwNzQsImV4cCI6MTc1MDAzOTY3NH0.cFZzK1ohaWGprJWecLfN5bx_tYFECwoB9it_EXXOdbo
+[2025-06-15 22:07:55] Authentication successful - User: {"iat":1750036074,"exp":1750039674}
+[2025-06-15 22:07:55] User not found: id=undefined
+[2025-06-15 22:07:55] Authentication attempt - Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NTAwMzYwNzQsImV4cCI6MTc1MDAzOTY3NH0.cFZzK1ohaWGprJWecLfN5bx_tYFECwoB9it_EXXOdbo
+[2025-06-15 22:07:55] Authentication successful - User: {"iat":1750036074,"exp":1750039674}
+[2025-06-15 22:07:55] Delete failed: User not found with id=undefined

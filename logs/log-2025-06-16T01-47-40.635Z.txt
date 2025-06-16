@@ -1,0 +1,13 @@
+[2025-06-15 22:47:40] Authentication attempt - Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzUwMDM4NDYwLCJleHAiOjE3NTAwNDIwNjB9.IhJH7LWDbnZipIGww9QzrK1OiEEOoDmgJaYVWE9FBAM
+[2025-06-15 22:47:40] Authentication successful - User: {"id":"1","username":"admin","iat":1750038460,"exp":1750042060}
+[2025-06-15 22:47:40] User created: username=TaskUser, id=5cb0f886-6797-4434-9448-8f8d62911200, age=30
+[2025-06-15 22:47:40] Authentication attempt - Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzUwMDM4NDYwLCJleHAiOjE3NTAwNDIwNjB9.IhJH7LWDbnZipIGww9QzrK1OiEEOoDmgJaYVWE9FBAM
+[2025-06-15 22:47:40] Authentication successful - User: {"id":"1","username":"admin","iat":1750038460,"exp":1750042060}
+[2025-06-15 22:47:40] Attempt to create task: {"title":"Estudar para a prova","status":"pending","assignee":"5cb0f886-6797-4434-9448-8f8d62911200"}
+[2025-06-15 22:47:40] Task [Estudar para a prova] created with ID [362a9127-6441-4fcb-b836-073bcf33b515] assigned to user [5cb0f886-6797-4434-9448-8f8d62911200]
+[2025-06-15 22:47:40] Authentication attempt - Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzUwMDM4NDYwLCJleHAiOjE3NTAwNDIwNjB9.IhJH7LWDbnZipIGww9QzrK1OiEEOoDmgJaYVWE9FBAM
+[2025-06-15 22:47:40] Authentication successful - User: {"id":"1","username":"admin","iat":1750038460,"exp":1750042060}
+[2025-06-15 22:47:40] Task retrieved: id=362a9127-6441-4fcb-b836-073bcf33b515
+[2025-06-15 22:47:40] Authentication attempt - Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzUwMDM4NDYwLCJleHAiOjE3NTAwNDIwNjB9.IhJH7LWDbnZipIGww9QzrK1OiEEOoDmgJaYVWE9FBAM
+[2025-06-15 22:47:40] Authentication successful - User: {"id":"1","username":"admin","iat":1750038460,"exp":1750042060}
+[2025-06-15 22:47:40] Task deleted: id=362a9127-6441-4fcb-b836-073bcf33b515

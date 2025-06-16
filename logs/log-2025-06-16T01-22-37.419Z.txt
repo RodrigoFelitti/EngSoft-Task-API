@@ -1,0 +1,4 @@
+[2025-06-15 22:22:37] 
+[2025-06-15 22:22:37] Authentication attempt - Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzUwMDM2OTU3LCJleHAiOjE3NTAwNDA1NTd9.b1zktJOIKC2cGJksdJWYkWcURSsx6fw4tl00BHOqb7o
+[2025-06-15 22:22:37] Authentication successful - User: {"id":"1","username":"admin","iat":1750036957,"exp":1750040557}
+[2025-06-15 22:22:37] User created: username=Rodrigo, id=b3d9a79d-d1c8-4063-95d1-aa673d59b5ef, age=25

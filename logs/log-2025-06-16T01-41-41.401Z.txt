@@ -1,0 +1,15 @@
+[2025-06-15 22:41:45] Authentication attempt - Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzUwMDM3MTIxLCJleHAiOjE3NTAwNDA3MjF9.Xi5mU4Vw29nNu0Ls3G8Ooic4qV5x5fge8uUMme7HFO4
+[2025-06-15 22:41:45] Authentication successful - User: {"id":"1","username":"admin","iat":1750037121,"exp":1750040721}
+[2025-06-15 22:41:45] User created: username=Rodrigo, id=393a8b73-4494-40d2-bad7-cdd9fceb4e27, age=20000
+[2025-06-15 22:42:02] Authentication attempt - Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzUwMDM3MTIxLCJleHAiOjE3NTAwNDA3MjF9.Xi5mU4Vw29nNu0Ls3G8Ooic4qV5x5fge8uUMme7HFO4
+[2025-06-15 22:42:02] Authentication successful - User: {"id":"1","username":"admin","iat":1750037121,"exp":1750040721}
+[2025-06-15 22:42:02] User retrieved: id=393a8b73-4494-40d2-bad7-cdd9fceb4e27, username=Rodrigo
+[2025-06-15 22:42:04] Authentication attempt - Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzUwMDM3MTIxLCJleHAiOjE3NTAwNDA3MjF9.Xi5mU4Vw29nNu0Ls3G8Ooic4qV5x5fge8uUMme7HFO4
+[2025-06-15 22:42:04] Authentication successful - User: {"id":"1","username":"admin","iat":1750037121,"exp":1750040721}
+[2025-06-15 22:42:04] User retrieved: id=393a8b73-4494-40d2-bad7-cdd9fceb4e27, username=Rodrigo
+[2025-06-15 22:42:04] Authentication attempt - Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzUwMDM3MTIxLCJleHAiOjE3NTAwNDA3MjF9.Xi5mU4Vw29nNu0Ls3G8Ooic4qV5x5fge8uUMme7HFO4
+[2025-06-15 22:42:04] Authentication successful - User: {"id":"1","username":"admin","iat":1750037121,"exp":1750040721}
+[2025-06-15 22:42:04] User retrieved: id=393a8b73-4494-40d2-bad7-cdd9fceb4e27, username=Rodrigo
+[2025-06-15 22:42:05] Authentication attempt - Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzUwMDM3MTIxLCJleHAiOjE3NTAwNDA3MjF9.Xi5mU4Vw29nNu0Ls3G8Ooic4qV5x5fge8uUMme7HFO4
+[2025-06-15 22:42:05] Authentication successful - User: {"id":"1","username":"admin","iat":1750037121,"exp":1750040721}
+[2025-06-15 22:42:05] User retrieved: id=393a8b73-4494-40d2-bad7-cdd9fceb4e27, username=Rodrigo
