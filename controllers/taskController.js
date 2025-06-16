@@ -2,6 +2,7 @@ import { v4 as uuid } from 'uuid';
 import * as taskService from '../services/taskService.js';
 import * as userService from '../services/userService.js';
 import { log } from '../middlewares/logger.js';
+import { notifyDiscord } from '../middlewares/discordNotifier.js';
 
 
 export const createTask = async (req, res) => {
@@ -24,6 +25,9 @@ export const createTask = async (req, res) => {
     const id = uuid();
     const newTask = { id, title, status, assignee };
     await taskService.createTask(newTask);
+
+    const message = `🆕 Nova tarefa criada: **${title}** (Status: ${status}) atribuída a <@${assignee}>`;
+    await notifyDiscord(message);
 
     log(`Task [${title}] created with ID [${id}] assigned to user [${assignee}]`);
     res.status(201).json(newTask);
