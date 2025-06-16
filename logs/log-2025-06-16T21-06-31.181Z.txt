@@ -1,3 +1,0 @@
-[2025-06-16 18:06:31] Authentication attempt - Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzUwMTA3OTkxLCJleHAiOjE3NTAxMTE1OTF9.u7hGJ21LDaPTLFLpQe3SxUmxLFerutOhHy2doQBHnOc
-[2025-06-16 18:06:31] Authentication successful - User: {"id":"1","username":"admin","iat":1750107991,"exp":1750111591}
-[2025-06-16 18:06:31] User created: username=TaskUser, id=d8e9f7c6-ebb9-492b-99d6-213590a9ee79, age=30

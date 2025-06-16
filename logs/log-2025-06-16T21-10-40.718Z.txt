@@ -1,4 +1,0 @@
-[2025-06-16 18:10:46] Authentication attempt - Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzUwMTA4MDg4LCJleHAiOjE3NTAxMTE2ODh9.5iKWQ3SxFol1ZirsJ57XpBRjxD3cXsV-R7PsPLHH2m8
-[2025-06-16 18:10:46] Authentication successful - User: {"id":"1","username":"admin","iat":1750108088,"exp":1750111688}
-[2025-06-16 18:10:46] Attempt to create task: {"title":"task2","status":"doing","assignee":"c4f93800-a745-4201-a117-7847b9b15bcf"}
-[2025-06-16 18:10:46] Task [task2] created with ID [0e560d01-f81a-4799-af38-ae641999e68b] assigned to user [c4f93800-a745-4201-a117-7847b9b15bcf]

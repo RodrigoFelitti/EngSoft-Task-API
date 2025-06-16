@@ -1,7 +1,0 @@
-[2025-06-16 18:21:49] Authentication attempt - Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzUwMTA4ODk3LCJleHAiOjE3NTAxMTI0OTd9.EVZFs1aggKlrge9j7oGbLrwm4AFBOkoaL40_Gd3ukIc
-[2025-06-16 18:21:49] Authentication successful - User: {"id":"1","username":"admin","iat":1750108897,"exp":1750112497}
-[2025-06-16 18:21:49] User created: username=Rodrigo, id=210bc4e5-55b4-4821-8fa1-cd34f85ffd14, age=20000
-[2025-06-16 18:22:15] Authentication attempt - Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzUwMTA4ODk3LCJleHAiOjE3NTAxMTI0OTd9.EVZFs1aggKlrge9j7oGbLrwm4AFBOkoaL40_Gd3ukIc
-[2025-06-16 18:22:15] Authentication successful - User: {"id":"1","username":"admin","iat":1750108897,"exp":1750112497}
-[2025-06-16 18:22:15] Attempt to create task: {"title":"task2","status":"doing","assignee":"210bc4e5-55b4-4821-8fa1-cd34f85ffd14"}
-[2025-06-16 18:22:15] Task [task2] created with ID [c4ebcccf-436b-4f76-aad2-fb7603abcc2c] assigned to user [210bc4e5-55b4-4821-8fa1-cd34f85ffd14]

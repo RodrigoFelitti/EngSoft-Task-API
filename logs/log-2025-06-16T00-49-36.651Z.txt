@@ -1,1 +1,0 @@
-[2025-06-15 21:49:36] Authentication attempt - Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzUwMDM0OTc2LCJleHAiOjE3NTAwMzg1NzZ9.I14GDwjDio13ydVYHegwGtRB25p5wx-IAwEEI5K0g1o
