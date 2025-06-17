@@ -1,7 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import db from './db.js';
-import * as userService from './services/userService.js';
 
 import users from './routes/users.js';
 import tasks from './routes/tasks.js';
