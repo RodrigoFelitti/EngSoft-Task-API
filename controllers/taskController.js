@@ -86,6 +86,10 @@ export const updateTask = async (req, res) => {
 
     await taskService.updateTask(req.params.id, updatedTask);
 
+    const username = await userService.getUserById(updatedTask.assignee);
+    const message = `:up: Tarefa **${updatedTask.title}** modificada: (Status: ${updatedTask.status}) atribuída a <@${username.username}>`;
+    await notifyDiscord(message);
+
     log(`Task updated: id=${req.params.id}, from=${JSON.stringify(task)} to=${JSON.stringify(updatedTask)}`);
     res.send('done');
 };
