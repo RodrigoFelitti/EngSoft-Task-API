@@ -26,7 +26,8 @@ export const createTask = async (req, res) => {
     const newTask = { id, title, status, assignee };
     await taskService.createTask(newTask);
 
-    const message = `🆕 Nova tarefa criada: **${title}** (Status: ${status}) atribuída a <@${assignee}>`;
+    const username = await userService.getUserById(assignee);
+    const message = `🆕 Nova tarefa criada: **${title}** (Status: ${status}) atribuída a <@${username.username}>`;
     await notifyDiscord(message);
 
     log(`Task [${title}] created with ID [${id}] assigned to user [${assignee}]`);
