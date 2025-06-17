@@ -1,9 +1,0 @@
-[2025-06-15 22:01:17] Authentication attempt - Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzUwMDM1Njc3LCJleHAiOjE3NTAwMzkyNzd9.3cVdBEAvI6FiZZ9FjnYSMngeopW8c66EiuWrANhY-JI
-[2025-06-15 22:01:17] Authentication successful - User: {"id":"1","username":"admin","iat":1750035677,"exp":1750039277}
-[2025-06-15 22:01:17] User created: username=Rodrigo, id=e7701b50-284d-4a21-bbc8-164b4954ed66, age=25
-[2025-06-15 22:01:17] Authentication attempt - Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzUwMDM1Njc3LCJleHAiOjE3NTAwMzkyNzd9.3cVdBEAvI6FiZZ9FjnYSMngeopW8c66EiuWrANhY-JI
-[2025-06-15 22:01:17] Authentication successful - User: {"id":"1","username":"admin","iat":1750035677,"exp":1750039277}
-[2025-06-15 22:01:17] User retrieved: id=fc915469-ccb3-47be-ade8-6d38f90c538f, username=Rodrigo
-[2025-06-15 22:01:17] Authentication attempt - Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzUwMDM1Njc3LCJleHAiOjE3NTAwMzkyNzd9.3cVdBEAvI6FiZZ9FjnYSMngeopW8c66EiuWrANhY-JI
-[2025-06-15 22:01:17] Authentication successful - User: {"id":"1","username":"admin","iat":1750035677,"exp":1750039277}
-[2025-06-15 22:01:17] User deleted: id=fc915469-ccb3-47be-ade8-6d38f90c538f, username=Rodrigo

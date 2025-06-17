@@ -1,2 +1,0 @@
-[2025-06-15 22:06:17] Authentication attempt - Header: Bearer undefined
-[2025-06-15 22:06:17] Authentication failed - Invalid token: undefined
