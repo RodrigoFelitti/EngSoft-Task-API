@@ -2,6 +2,7 @@ import { v4 as uuid } from 'uuid';
 import * as taskService from '../services/taskService.js';
 import * as userService from '../services/userService.js';
 import { log } from '../middlewares/logger.js';
+import { notifyDiscord } from '../middlewares/discordNotifier.js';
 
 
 export const createTask = async (req, res) => {
@@ -24,6 +25,10 @@ export const createTask = async (req, res) => {
     const id = uuid();
     const newTask = { id, title, status, assignee };
     await taskService.createTask(newTask);
+
+    const username = await userService.getUserById(assignee);
+    const message = `🆕 Nova tarefa criada: **${title}** (Status: ${status}) atribuída a <@${username.username}>`;
+    await notifyDiscord(message);
 
     log(`Task [${title}] created with ID [${id}] assigned to user [${assignee}]`);
     res.status(201).json(newTask);
@@ -80,6 +85,10 @@ export const updateTask = async (req, res) => {
     };
 
     await taskService.updateTask(req.params.id, updatedTask);
+
+    const username = await userService.getUserById(updatedTask.assignee);
+    const message = `:up: Tarefa **${updatedTask.title}** modificada: (Status: ${updatedTask.status}) atribuída a <@${username.username}>`;
+    await notifyDiscord(message);
 
     log(`Task updated: id=${req.params.id}, from=${JSON.stringify(task)} to=${JSON.stringify(updatedTask)}`);
     res.send('done');
