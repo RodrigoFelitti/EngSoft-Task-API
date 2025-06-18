@@ -41,17 +41,14 @@ export const getTasksWithFilters = async (filters) => {
     await db.read();
     let filteredTasks = db.data.tasks;
 
-    // Filtro por status
     if (filters.status) {
         filteredTasks = filteredTasks.filter(task => task.status === filters.status);
     }
 
-    // Filtro por prioridade
     if (filters.prioridade) {
         filteredTasks = filteredTasks.filter(task => (task.prioridade || 'normal') === filters.prioridade);
     }
 
-    // Filtro por deadline (após uma data específica)
     if (filters.deadlineAfter) {
         const deadlineDate = new Date(filters.deadlineAfter);
         filteredTasks = filteredTasks.filter(task => {

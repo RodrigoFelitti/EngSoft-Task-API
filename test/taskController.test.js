@@ -51,7 +51,13 @@ beforeEach(async () => {
 
 describe('Task Controller', () => {
     test('POST /tasks - criar task', async () => {
-        // Cria um usuário para este teste específico
+        /*
+        oss testes envolvem a criação, deleção e busca de tasks a partir da task criada,
+        para garantir que a task foi criada corretamente e que operações de busca e deleção
+        estão funcionando corretamente para aquela task
+        */
+
+        //cria user pra teste
         const userRes = await request(app)
             .post('/users')
             .set('Authorization', `Bearer ${token}`)
@@ -87,7 +93,6 @@ describe('Task Controller', () => {
         });
         expect(res.body.id).toBeDefined();
 
-        // Testa buscar a task criada
         const getRes = await request(app)
             .get(`/tasks/${res.body.id}`)
             .set('Authorization', `Bearer ${token}`);
@@ -108,7 +113,6 @@ describe('Task Controller', () => {
             }
         });
 
-        // Testa deletar a task criada
         const deleteRes = await request(app)
             .delete(`/tasks/${res.body.id}`)
             .set('Authorization', `Bearer ${token}`);
@@ -151,6 +155,7 @@ describe('Task Controller', () => {
         });
     });
 
+    //testes de algumas exceções
     test('GET /tasks/:id - buscar task inexistente', async () => {
         const res = await request(app)
             .get('/tasks/non-existent-id')
@@ -187,7 +192,6 @@ describe('Task Controller', () => {
         const user1 = await userService.getUserByUsername('User1');
         const user2 = await userService.getUserByUsername('User2');
 
-        // Cria várias tarefas com diferentes características
         const tasks = [
             {
                 title: 'Tarefa Alta Prioridade',
@@ -215,7 +219,6 @@ describe('Task Controller', () => {
             }
         ];
 
-        // Cria as tarefas
         for (const taskData of tasks) {
             const res = await request(app)
                 .post('/tasks')
@@ -224,7 +227,6 @@ describe('Task Controller', () => {
             expect(res.status).toBe(201);
         }
 
-        // Testa filtro por status
         const statusFilterRes = await request(app)
             .get('/tasks/filter?status=done')
             .set('Authorization', `Bearer ${token}`);
@@ -233,7 +235,6 @@ describe('Task Controller', () => {
         expect(statusFilterRes.body).toHaveLength(1);
         expect(statusFilterRes.body[0].status).toBe('done');
 
-        // Testa filtro por prioridade
         const priorityFilterRes = await request(app)
             .get('/tasks/filter?prioridade=alta')
             .set('Authorization', `Bearer ${token}`);
@@ -242,7 +243,6 @@ describe('Task Controller', () => {
         expect(priorityFilterRes.body).toHaveLength(2);
         expect(priorityFilterRes.body.every(task => task.prioridade === 'alta')).toBe(true);
 
-        // Testa filtro por deadline
         const deadlineFilterRes = await request(app)
             .get('/tasks/filter?deadlineAfter=2025-06-01')
             .set('Authorization', `Bearer ${token}`);
@@ -251,7 +251,6 @@ describe('Task Controller', () => {
         expect(deadlineFilterRes.body).toHaveLength(2);
         expect(deadlineFilterRes.body.every(task => new Date(task.deadline) >= new Date('2025-06-01'))).toBe(true);
 
-        // Testa filtro combinado
         const combinedFilterRes = await request(app)
             .get('/tasks/filter?status=pending&prioridade=alta')
             .set('Authorization', `Bearer ${token}`);
@@ -261,7 +260,6 @@ describe('Task Controller', () => {
         expect(combinedFilterRes.body[0].status).toBe('pending');
         expect(combinedFilterRes.body[0].prioridade).toBe('alta');
 
-        // Testa filtro por assignedTo (endpoint separado)
         const assigneeFilterRes = await request(app)
             .get('/tasks/by-assignee?assignedTo=' + user1.id)
             .set('Authorization', `Bearer ${token}`);

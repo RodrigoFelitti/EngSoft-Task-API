@@ -2,23 +2,22 @@ import { createLogger, format, transports } from 'winston';
 import fs from 'fs';
 import path from 'path';
 
-// Cria a pasta logs se não existir
+//criar a pasta de logs
 const logDir = './logs';
 if (!fs.existsSync(logDir)) {
     fs.mkdirSync(logDir);
 }
 
-// Determina se está rodando testes ou aplicação
+//decide se é para testes ou prod
 const isTestEnvironment = process.env.NODE_ENV === 'test' || process.argv.includes('--test') || process.argv.includes('jest');
 
-// Nome do arquivo por execução com formato mais legível
+//monta um nome para o arquivo de log
 const now = new Date();
 const dateStr = now.toISOString().slice(0, 19).replace(/:/g, '-');
 const executionType = isTestEnvironment ? 'test' : 'app';
 const logFileName = `log-${executionType}-${dateStr}.txt`;
 const logFilePath = path.join(logDir, logFileName);
 
-// Formato
 const logger = createLogger({
     format: format.combine(
         format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
@@ -30,7 +29,6 @@ const logger = createLogger({
     ]
 });
 
-// Exporta uma função simples
 export const log = (message) => {
     logger.log({ level: 'info', message });
 };

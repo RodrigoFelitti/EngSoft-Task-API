@@ -31,7 +31,6 @@ afterAll(async () => {
 });
 
 beforeEach(async () => {
-    // Reset do banco antes de cada teste
     const initialData = {
         users: [
             {
@@ -64,7 +63,6 @@ describe('User Controller', () => {
     });
 
     test('GET /users/:id - buscar usuário existente', async () => {
-        // Primeiro cria o usuário
         const createRes = await request(app)
             .post('/users')
             .set('Authorization', `Bearer ${token}`)
@@ -75,7 +73,6 @@ describe('User Controller', () => {
         const user = await userService.getUserByUsername('Rodrigo');
         const userId = user.id;
 
-        // Agora busca o usuário criado
         const res = await request(app)
             .get(`/users/${userId}`)
             .set('Authorization', `Bearer ${token}`);
@@ -85,7 +82,7 @@ describe('User Controller', () => {
     });
 
     test('DELETE /users/:id - deletar usuário', async () => {
-        // Primeiro cria o usuário
+
         const createRes = await request(app)
             .post('/users')
             .set('Authorization', `Bearer ${token}`)
@@ -96,7 +93,6 @@ describe('User Controller', () => {
         const user = await userService.getUserByUsername('Rodrigo');
         const userId = user.id;
 
-        // Agora deleta o usuário criado
         const res = await request(app)
             .delete(`/users/${userId}`)
             .set('Authorization', `Bearer ${token}`);

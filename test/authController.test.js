@@ -24,7 +24,7 @@ afterAll(async () => {
 });
 
 beforeEach(async () => {
-    // Reset do banco antes de cada teste
+    //reseta o banco de dados
     const initialData = {
         users: [
             {
