@@ -1,5 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import swaggerUi from 'swagger-ui-express';
+import { specs } from './swagger.js';
 import db from './db.js';
 
 import users from './routes/users.js';
@@ -8,7 +10,6 @@ import authRoutes from './routes/auth.js';
 
 const app = express();
 
-// Inicialização lazy do banco de dados
 const initializeDb = async () => {
     await db.read();
     
@@ -20,7 +21,6 @@ const initializeDb = async () => {
     }
 };
 
-// Middleware para inicializar o banco se necessário
 app.use(async (req, res, next) => {
     if (!db.data.users) {
         await initializeDb();
@@ -29,6 +29,12 @@ app.use(async (req, res, next) => {
 });
 
 app.use(bodyParser.json());
+
+// Swagger UI
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs, {
+    customCss: '.swagger-ui .topbar { display: none }',
+    customSiteTitle: 'API de Gerenciamento de Tarefas - Documentação'
+}));
 
 app.use('/users', users);
 app.use('/tasks', tasks);
