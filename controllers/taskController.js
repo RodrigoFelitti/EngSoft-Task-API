@@ -34,11 +34,10 @@ export const createTask = async (req, res) => {
     };
     await taskService.createTask(newTask);
 
-    const username = await userService.getUserById(assignee);
-    const message = `🆕 Nova tarefa criada: **${title}** (Status: ${status}) atribuída a <@${username.username}>`;
+    const message = `🆕 Nova tarefa criada: **${title}** (Status: ${status}) atribuída a <@${user.username}>`;
     await notifyDiscord(message);
 
-    log(`Task created successfully: id=${id}, title=${title}, status=${status}, assignee=${assignee} (${username.username}), descricao=${descricao || 'N/A'}, prioridade=${prioridade || 'normal'}, deadline=${deadline || 'N/A'}`);
+    log(`Task created successfully: id=${id}, title=${title}, status=${status}, assignee=${assignee} (${user.username}), descricao=${descricao || 'N/A'}, prioridade=${prioridade || 'normal'}, deadline=${deadline || 'N/A'}`);
     res.status(201).json(newTask);
 };
 
@@ -100,13 +99,19 @@ export const updateTask = async (req, res) => {
         deadline: req.body.deadline || task.deadline || null
     };
 
+    // Verificar se o novo assignee existe
+    const user = await userService.getUserById(updatedTask.assignee);
+    if (!user) {
+        log(`Update failed - New assignee not found: assignee=${updatedTask.assignee}`);
+        return res.status(404).json({ error: 'New assignee (User) not found' });
+    }
+
     await taskService.updateTask(req.params.id, updatedTask);
 
-    const username = await userService.getUserById(updatedTask.assignee);
-    const message = `:up: Tarefa **${updatedTask.title}** modificada: (Status: ${updatedTask.status}) atribuída a <@${username.username}>`;
+    const message = `:up: Tarefa **${updatedTask.title}** modificada: (Status: ${updatedTask.status}) atribuída a <@${user.username}>`;
     await notifyDiscord(message);
 
-    log(`Task updated successfully: id=${task.id}, title=${updatedTask.title}, status=${updatedTask.status}, assignee=${username.username}, descricao=${updatedTask.descricao || 'N/A'}, prioridade=${updatedTask.prioridade || 'normal'}, deadline=${updatedTask.deadline || 'N/A'}`);
+    log(`Task updated successfully: id=${task.id}, title=${updatedTask.title}, status=${updatedTask.status}, assignee=${user.username}, descricao=${updatedTask.descricao || 'N/A'}, prioridade=${updatedTask.prioridade || 'normal'}, deadline=${updatedTask.deadline || 'N/A'}`);
     res.send('done');
 };
 
