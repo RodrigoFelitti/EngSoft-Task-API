@@ -1,15 +1,16 @@
 import express from 'express'
-import { createTask, getTask, deleteTask, updateTask, getTasksByAssignee } from '../controllers/taskController.js';
+import { createTask, getTask, deleteTask, updateTask, getTasksByAssignee, getTasksWithFilters } from '../controllers/taskController.js';
 import { authenticateToken } from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
-
 router.post('/', authenticateToken, createTask);
 
-router.get('/:id', authenticateToken, getTask);
+router.get('/filter', authenticateToken, getTasksWithFilters);
 
-router.get('/', authenticateToken, getTasksByAssignee);
+router.get('/by-assignee', authenticateToken, getTasksByAssignee);
+
+router.get('/:id', authenticateToken, getTask);
 
 router.delete('/:id', authenticateToken, deleteTask);
 

@@ -146,3 +146,42 @@ export const getTasksByAssignee = async (req, res) => {
     log(`Tasks retrieved by assignee successfully: assignee=${user.username} (${assignedTo}), total=${filteredTasks.length}`);
     res.json(tasksWithUser);
 };
+
+export const getTasksWithFilters = async (req, res) => {
+    const { status, prioridade, deadlineAfter } = req.query;
+
+    try {
+        const filteredTasks = await taskService.getTasksWithFilters({
+            status,
+            prioridade,
+            deadlineAfter
+        });
+
+        // Busca informações dos usuários para cada task
+        const tasksWithUsers = await Promise.all(
+            filteredTasks.map(async (task) => {
+                const user = await userService.getUserById(task.assignee);
+                return {
+                    id: task.id,
+                    title: task.title,
+                    status: task.status,
+                    descricao: task.descricao || '',
+                    prioridade: task.prioridade || 'normal',
+                    deadline: task.deadline || null,
+                    assignee: user ? {
+                        id: user.id,
+                        username: user.username,
+                        age: user.age,
+                        email: user.email
+                    } : null
+                };
+            })
+        );
+
+        log(`Tasks filtered successfully: status=${status || 'all'}, prioridade=${prioridade || 'all'}, deadlineAfter=${deadlineAfter || 'none'}, total=${filteredTasks.length}`);
+        res.json(tasksWithUsers);
+    } catch (error) {
+        log(`Error filtering tasks: ${error.message}`);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};

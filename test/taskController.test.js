@@ -168,4 +168,106 @@ describe('Task Controller', () => {
         expect(res.status).toBe(404);
         expect(res.text).toBe('Task not found');
     });
+
+    test('GET /tasks - filtro avançado de tarefas', async () => {
+        // Cria usuários para o teste
+        const user1Res = await request(app)
+            .post('/users')
+            .set('Authorization', `Bearer ${token}`)
+            .send({ username: 'User1', age: 25, email: 'user1@email.com' });
+
+        const user2Res = await request(app)
+            .post('/users')
+            .set('Authorization', `Bearer ${token}`)
+            .send({ username: 'User2', age: 30, email: 'user2@email.com' });
+
+        expect(user1Res.status).toBe(201);
+        expect(user2Res.status).toBe(201);
+
+        const user1 = await userService.getUserByUsername('User1');
+        const user2 = await userService.getUserByUsername('User2');
+
+        // Cria várias tarefas com diferentes características
+        const tasks = [
+            {
+                title: 'Tarefa Alta Prioridade',
+                status: 'done',
+                assignee: user1.id,
+                descricao: 'Tarefa concluída alta prioridade',
+                prioridade: 'alta',
+                deadline: '2025-06-15'
+            },
+            {
+                title: 'Tarefa Normal',
+                status: 'pending',
+                assignee: user2.id,
+                descricao: 'Tarefa pendente normal',
+                prioridade: 'normal',
+                deadline: '2025-05-15'
+            },
+            {
+                title: 'Tarefa Alta Prioridade Pendente',
+                status: 'pending',
+                assignee: user1.id,
+                descricao: 'Tarefa pendente alta prioridade',
+                prioridade: 'alta',
+                deadline: '2025-07-01'
+            }
+        ];
+
+        // Cria as tarefas
+        for (const taskData of tasks) {
+            const res = await request(app)
+                .post('/tasks')
+                .set('Authorization', `Bearer ${token}`)
+                .send(taskData);
+            expect(res.status).toBe(201);
+        }
+
+        // Testa filtro por status
+        const statusFilterRes = await request(app)
+            .get('/tasks/filter?status=done')
+            .set('Authorization', `Bearer ${token}`);
+
+        expect(statusFilterRes.status).toBe(200);
+        expect(statusFilterRes.body).toHaveLength(1);
+        expect(statusFilterRes.body[0].status).toBe('done');
+
+        // Testa filtro por prioridade
+        const priorityFilterRes = await request(app)
+            .get('/tasks/filter?prioridade=alta')
+            .set('Authorization', `Bearer ${token}`);
+
+        expect(priorityFilterRes.status).toBe(200);
+        expect(priorityFilterRes.body).toHaveLength(2);
+        expect(priorityFilterRes.body.every(task => task.prioridade === 'alta')).toBe(true);
+
+        // Testa filtro por deadline
+        const deadlineFilterRes = await request(app)
+            .get('/tasks/filter?deadlineAfter=2025-06-01')
+            .set('Authorization', `Bearer ${token}`);
+
+        expect(deadlineFilterRes.status).toBe(200);
+        expect(deadlineFilterRes.body).toHaveLength(2);
+        expect(deadlineFilterRes.body.every(task => new Date(task.deadline) >= new Date('2025-06-01'))).toBe(true);
+
+        // Testa filtro combinado
+        const combinedFilterRes = await request(app)
+            .get('/tasks/filter?status=pending&prioridade=alta')
+            .set('Authorization', `Bearer ${token}`);
+
+        expect(combinedFilterRes.status).toBe(200);
+        expect(combinedFilterRes.body).toHaveLength(1);
+        expect(combinedFilterRes.body[0].status).toBe('pending');
+        expect(combinedFilterRes.body[0].prioridade).toBe('alta');
+
+        // Testa filtro por assignedTo (endpoint separado)
+        const assigneeFilterRes = await request(app)
+            .get('/tasks/by-assignee?assignedTo=' + user1.id)
+            .set('Authorization', `Bearer ${token}`);
+
+        expect(assigneeFilterRes.status).toBe(200);
+        expect(assigneeFilterRes.body).toHaveLength(2);
+        expect(assigneeFilterRes.body.every(task => task.assignee.id === user1.id)).toBe(true);
+    });
 });
