@@ -1,9 +1,15 @@
 import db from '../db.js';
+import { v4 as uuid } from 'uuid';
 
 export const createTask = async (task) => {
     await db.read();
-    db.data.tasks.push(task);
+    const newTask = {
+        id: uuid(),
+        ...task
+    };
+    db.data.tasks.push(newTask);
     await db.write();
+    return newTask;
 };
 
 export const getTaskById = async (id) => {

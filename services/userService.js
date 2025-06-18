@@ -15,6 +15,7 @@ export const createUser = async (userData) => {
   await db.read();
 
   const newUser = {
+    id: uuid(),
     ...userData
   };
 

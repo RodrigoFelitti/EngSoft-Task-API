@@ -4,59 +4,8 @@
       "id": "1",
       "username": "admin",
       "age": 30
-    },
-    {
-      "username": "Rodrigo",
-      "age": 20000,
-      "id": "3d06d6bb-d940-4575-9ddc-13a80913dc46"
-    },
-    {
-      "username": "Rodrigo",
-      "age": 20000,
-      "id": "210bc4e5-55b4-4821-8fa1-cd34f85ffd14"
-    },
-    {
-      "username": "Rodrigo",
-      "age": 20000,
-      "id": "545d31ee-c19b-4805-9fc8-cd6757bed04d"
-    },
-    {
-      "username": "Rodrigo",
-      "age": 20000,
-      "id": "637ec0af-4608-4ad5-9069-4a29523dc37d"
     }
   ],
-  "tasks": [
-    {
-      "id": "fb327b49-bcd9-4579-9ad3-ba1488ec0cd3",
-      "title": "task2",
-      "status": "completed",
-      "assignee": "3d06d6bb-d940-4575-9ddc-13a80913dc46"
-    },
-    {
-      "id": "c4ebcccf-436b-4f76-aad2-fb7603abcc2c",
-      "title": "task2",
-      "status": "doing",
-      "assignee": "210bc4e5-55b4-4821-8fa1-cd34f85ffd14"
-    },
-    {
-      "id": "2eb2acf6-1f8a-45bc-a111-a6129de2fe48",
-      "title": "task2",
-      "status": "doing",
-      "assignee": "545d31ee-c19b-4805-9fc8-cd6757bed04d"
-    },
-    {
-      "id": "dbfb41ab-0c23-4528-8934-1ad4049739f0",
-      "title": "task2",
-      "status": "doing",
-      "assignee": "545d31ee-c19b-4805-9fc8-cd6757bed04d"
-    },
-    {
-      "id": "8f167e5a-ad55-4f42-997e-b9663d1639e2",
-      "title": "task2",
-      "status": "doing",
-      "assignee": "545d31ee-c19b-4805-9fc8-cd6757bed04d"
-    }
-  ],
+  "tasks": [],
   "blacklistedTokens": []
 }

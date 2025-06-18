@@ -1,11 +1,23 @@
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import request from 'supertest';
-import app from '../index.js';
-import * as userService from '../services/userService.js'
+import { createTempDb, cleanupTempDb } from './testUtils.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 let token;
-let createdUserId;
+let tempDbPath;
+let app;
+let userService;
 
 beforeAll(async () => {
+    tempDbPath = createTempDb();
+    process.env.TEST_DB_PATH = tempDbPath;
+    app = (await import('../index.js')).default;
+    userService = await import('../services/userService.js');
+
     const res = await request(app)
         .post('/auth/login')
         .send({ username: 'admin' });
@@ -14,13 +26,24 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-    // Limpa todos os usuários (exceto o admin)
-    const allUsers = await userService.getAllUsers();
-    for (const user of allUsers) {
-        if (user.username !== 'admin') {
-            await userService.deleteUser(user.id);
-        }
-    }
+    cleanupTempDb(tempDbPath);
+    delete process.env.TEST_DB_PATH;
+});
+
+beforeEach(async () => {
+    // Reset do banco antes de cada teste
+    const initialData = {
+        users: [
+            {
+                id: '1',
+                username: 'admin',
+                age: 30
+            }
+        ],
+        tasks: [],
+        blacklistedTokens: []
+    };
+    fs.writeFileSync(tempDbPath, JSON.stringify(initialData, null, 2));
 });
 
 describe('User Controller', () => {
@@ -34,12 +57,26 @@ describe('User Controller', () => {
         expect(res.text).toBe('done');
 
         const user = await userService.getUserByUsername('Rodrigo');
-        createdUserId = user?.id;
+        expect(user).toBeTruthy();
+        expect(user.username).toBe('Rodrigo');
+        expect(user.age).toBe(25);
     });
 
     test('GET /users/:id - buscar usuário existente', async () => {
+        // Primeiro cria o usuário
+        const createRes = await request(app)
+            .post('/users')
+            .set('Authorization', `Bearer ${token}`)
+            .send({ username: 'Rodrigo', age: 25 });
+
+        expect(createRes.status).toBe(201);
+
+        const user = await userService.getUserByUsername('Rodrigo');
+        const userId = user.id;
+
+        // Agora busca o usuário criado
         const res = await request(app)
-            .get(`/users/${createdUserId}`)
+            .get(`/users/${userId}`)
             .set('Authorization', `Bearer ${token}`);
 
         expect(res.status).toBe(200);
@@ -47,8 +84,20 @@ describe('User Controller', () => {
     });
 
     test('DELETE /users/:id - deletar usuário', async () => {
+        // Primeiro cria o usuário
+        const createRes = await request(app)
+            .post('/users')
+            .set('Authorization', `Bearer ${token}`)
+            .send({ username: 'Rodrigo', age: 25 });
+
+        expect(createRes.status).toBe(201);
+
+        const user = await userService.getUserByUsername('Rodrigo');
+        const userId = user.id;
+
+        // Agora deleta o usuário criado
         const res = await request(app)
-            .delete(`/users/${createdUserId}`)
+            .delete(`/users/${userId}`)
             .set('Authorization', `Bearer ${token}`);
 
         expect(res.status).toBe(200);
