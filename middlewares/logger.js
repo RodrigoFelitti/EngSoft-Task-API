@@ -8,9 +8,15 @@ if (!fs.existsSync(logDir)) {
     fs.mkdirSync(logDir);
 }
 
-// Nome do arquivo por execução
-const executionTimestamp = new Date().toISOString().replace(/:/g, '-');
-const logFilePath = path.join(logDir, `log-${executionTimestamp}.txt`);
+// Determina se está rodando testes ou aplicação
+const isTestEnvironment = process.env.NODE_ENV === 'test' || process.argv.includes('--test') || process.argv.includes('jest');
+
+// Nome do arquivo por execução com formato mais legível
+const now = new Date();
+const dateStr = now.toISOString().slice(0, 19).replace(/:/g, '-');
+const executionType = isTestEnvironment ? 'test' : 'app';
+const logFileName = `log-${executionType}-${dateStr}.txt`;
+const logFilePath = path.join(logDir, logFileName);
 
 // Formato
 const logger = createLogger({

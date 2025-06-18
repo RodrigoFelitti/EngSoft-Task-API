@@ -8,16 +8,25 @@ import authRoutes from './routes/auth.js';
 
 const app = express();
 
-await db.read();
+// Inicialização lazy do banco de dados
+const initializeDb = async () => {
+    await db.read();
+    
+    if (!db.data.users || db.data.users.length === 0) {
+        const adminUser = { id: '1', username: 'admin', age: 30 };
+        db.data.users = [adminUser];
+        console.log('Usuário admin criado.');
+        await db.write();
+    }
+};
 
-if (!db.data.users || db.data.users.length === 0) {
-  const adminUser = { id: '1', username: 'admin', age: 30 };
-  db.data.users = [adminUser];
-  console.log('Usuário admin criado.');
-  await db.write();
-}
-
-//userService.clearAll()
+// Middleware para inicializar o banco se necessário
+app.use(async (req, res, next) => {
+    if (!db.data.users) {
+        await initializeDb();
+    }
+    next();
+});
 
 app.use(bodyParser.json());
 

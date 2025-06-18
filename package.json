@@ -4,8 +4,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon server.js",
-    "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js --coverage"
+    "start": "npm run clean-db && nodemon server.js",
+    "test": "npm run clean-db && node --experimental-vm-modules ./node_modules/jest/bin/jest.js --coverage",
+    "clean-db": "node ./scripts/cleanDb.js"
   },
   "keywords": [],
   "author": "",

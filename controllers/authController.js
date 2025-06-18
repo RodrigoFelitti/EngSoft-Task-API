@@ -1,5 +1,4 @@
 import jwt from 'jsonwebtoken';
-import { users, setUsers } from '../data/users.js';
 import * as userService from '../services/userService.js'
 import * as authService from '../services/authService.js'
 
@@ -23,14 +22,14 @@ export const loginUser = async (req, res) => {
 };
 
 // POST /auth/logout
-export const logoutUser = (req, res) => {
+export const logoutUser = async (req, res) => {
     const token = req.headers.authorization?.split(' ')[1];
 
     if (!token) {
         return res.status(400).json({ error: 'Token is required' });
     }
 
-    authService.addToken(token);
+    await authService.addToken(token);
 
     res.json({ message: 'Logged out successfully' });
 };
