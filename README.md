@@ -1,33 +1,43 @@
 # API de Gerenciamento de Tarefas
 
-Uma API REST completa para gerenciamento de usuários e tarefas, desenvolvida em Node.js com Express, incluindo autenticação JWT, logs detalhados e notificações Discord.
+### Engenharia de Software: Arquitetura e Padrões - 2025/01
+##### Professor Guilherme Lacerda
 
-## 🚀 Funcionalidades
 
-### 🔐 Autenticação
+##### Alunos: Arthur Andrade, Gustavo Cortezia, João Vitor Dallarosa e Rodrigo Felitti
+
+## 1. Visão geral
+
+### Objetivo do Sistema 
+Fizemos este sistema tem como objetivo facilitar a gestão de tarefas em equipes, permitindo o cadastro de usuários, criação, atribuição e acompanhamento de tarefas de forma colaborativa.
+Buscamos garantir estabilidade e simplicidade na implementação evitando over-engineering e garantindo que aquilo que entregamos como MVP estivesse funcional e com uma boa qualidade. Entendemos que em sistemas produtivos seria necessário fazer diversos polimentos quanto a segurança, idempotência e performance. Nosso principal objetivo foi entregar os requisitos mínimos do trabalho com uma boa estabilidade dentro do prazo estipulado, garantindo que o projeto tivesse capacidade de extensão de funcionalidades e facilidade de ser mantido ou modificado para otimizar funcionalidades existentes
+
+## 2. Funcionalidades
+
+### Autenticação
 - Login de usuários com JWT
 - Logout com blacklist de tokens
 - Middleware de autenticação
 
-### 👥 Usuários
+### Usuários
 - CRUD completo de usuários
 - Validação de campos obrigatórios
 - Busca por ID
 
-### 📋 Tarefas
+### Tarefas
 - CRUD completo de tarefas
 - Filtros avançados (status, prioridade, deadline)
 - Busca por responsável
 - Valores padrão para campos opcionais
 
-### 📊 Recursos Adicionais
+### Recursos Adicionais
 - Logs detalhados com Winston
 - Notificações Discord para tarefas importantes
 - Documentação Swagger/OpenAPI 3.0
 - Testes automatizados com Jest
 - Cobertura de testes de 69.41%
 
-## 🛠️ Tecnologias
+## 3. Tecnologias usadas
 
 - **Node.js** - Runtime JavaScript
 - **Express** - Framework web
@@ -37,12 +47,12 @@ Uma API REST completa para gerenciamento de usuários e tarefas, desenvolvida em
 - **Jest** - Framework de testes
 - **Swagger/OpenAPI** - Documentação da API
 
-## 📦 Instalação
+## 4. Instalação
 
 1. **Clone o repositório:**
    ```bash
-   git clone <url-do-repositorio>
-   cd Learn-node
+   git clone https://github.com/RodrigoFelitti/EngSoft-Task-API.git
+   cd EngSoft-Task-API
    ```
 
 2. **Instale as dependências:**
@@ -59,9 +69,9 @@ Uma API REST completa para gerenciamento de usuários e tarefas, desenvolvida em
    - Swagger UI: `http://localhost:5000/api-docs`
    - API: `http://localhost:5000`
 
-## 📚 Documentação
+## 5. Documentação
 
-### Swagger UI
+### Swagger
 A documentação interativa está disponível em `http://localhost:5000/api-docs` e inclui:
 - Todos os endpoints documentados
 - Exemplos de requisição e resposta
@@ -70,11 +80,11 @@ A documentação interativa está disponível em `http://localhost:5000/api-docs
 - Autenticação JWT integrada
 
 ### Documentação Detalhada
-- [Guia de Testes Manuais](docs/Tests.md) - Casos de teste completos
+- [Guia de Testes Manuais](docs/Tests.md) - Casos de testes funcionais
 - [Documentação Swagger](docs/Swagger.md) - Informações sobre a documentação
-- [Guia Prático](docs/Exemplo-Uso-Swagger.md) - Como usar a API via Swagger
+- [Guia de arquitetura](docs/Architecture.md) - Como pensamos na solução
 
-## 🔧 Scripts Disponíveis
+## 6. Scripts Disponíveis
 
 ```bash
 npm start          # Inicia o servidor com nodemon
@@ -82,7 +92,7 @@ npm test           # Executa os testes com cobertura
 npm run clean-db   # Limpa o banco de dados
 ```
 
-## 📋 Endpoints da API
+## 7. Endpoints da API
 
 ### Autenticação
 - `POST /auth/login` - Login de usuário
@@ -102,7 +112,7 @@ npm run clean-db   # Limpa o banco de dados
 - `GET /tasks/filter` - Filtrar tarefas
 - `GET /tasks/by-assignee` - Buscar tarefas por responsável
 
-## 🧪 Testes
+## 8. Testes
 
 ### Executar Testes
 ```bash
@@ -117,7 +127,7 @@ npm test
 ### Testes Manuais
 Consulte [docs/Tests.md](docs/Tests.md) para casos de teste manuais detalhados.
 
-## 📊 Estrutura do Projeto
+## 9. Estrutura do Projeto
 
 ```
 Learn-node/
@@ -134,7 +144,7 @@ Learn-node/
 └── index.js             # Configuração da aplicação
 ```
 
-## 🔐 Autenticação
+## 10. Autenticação
 
 A API usa JWT (JSON Web Tokens) para autenticação:
 
@@ -142,77 +152,32 @@ A API usa JWT (JSON Web Tokens) para autenticação:
 2. **Token:** Use o token retornado no header `Authorization: Bearer {token}`
 3. **Logout:** `POST /auth/logout` invalida o token
 
-## 📝 Logs
+## 11. Logs
 
 - **Arquivo:** `logs/` - Logs detalhados de todas as operações
 - **Console:** Logs de desenvolvimento e erros
 - **Formato:** JSON com timestamp e contexto
 
-## 🔔 Notificações Discord
+## 12. Notificações Discord
 
 Tarefas importantes geram notificações automáticas no Discord:
-- Criação de tarefas de alta prioridade
-- Atualização de status para "done"
+- Criação de tarefas
+- Atualização de status
 - Configurável via variáveis de ambiente
 
-## 🚀 Como Usar
+## 13. Como Usar
 
-### 1. Via Swagger UI (Recomendado)
+### 1. Via Swagger
 1. Acesse `http://localhost:5000/api-docs`
 2. Faça login com username "admin"
 3. Autorize com o token JWT
 4. Teste os endpoints interativamente
 
 ### 2. Via Cliente HTTP
-```bash
-# Login
-curl -X POST http://localhost:5000/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{"username": "admin"}'
+ - Não entraremos em muitos detalhes já que não é a intenção da documentação, porém utilizamos Bruno durante o desenvolvimento para facilitar testes dos diferentes endpoints.
 
-# Usar token
-curl -X GET http://localhost:5000/users/1 \
-  -H "Authorization: Bearer {seu_token}"
-```
+## 14 Sobre a história projeto
 
-### 3. Exemplos Completos
-Consulte [docs/Exemplo-Uso-Swagger.md](docs/Exemplo-Uso-Swagger.md) para exemplos práticos.
+- Para iniciarmos o desenvolvimento do trabalho, o time teve algumas conversas sobre quais eram os requisitos da aplicação e como poderíamos cobrir estes requisitos da forma mais simples e estável no tempo requisitado. Visto que todos do grupo sabiam tecnologias diferentes, tivemos algumas curvas de aprendizado durante o desenvolvimento, e certa dificuldade em paralelizar tarefas visto que algumas funcionalidades dependiam fortemente de como implentaríamos outra funcionalidades. Tivemos que migrar de repositório algumas vezes em função de alguns conflitos com o github, de modo que conseguíssemos entregar o MVP da API em um repositório limpo, funcional e organizado.
 
-## 🐛 Solução de Problemas
-
-### Servidor não inicia
-- Verifique se a porta 5000 está livre
-- Confirme se todas as dependências estão instaladas
-
-### Erro de autenticação
-- Verifique se o token está válido
-- Faça login novamente se necessário
-
-### Erro 404
-- Confirme se o ID do recurso existe
-- Verifique se a URL está correta
-
-## 🤝 Contribuição
-
-1. Fork o projeto
-2. Crie uma branch para sua feature
-3. Implemente as mudanças
-4. Adicione testes
-5. Atualize a documentação
-6. Faça o pull request
-
-## 📄 Licença
-
-Este projeto está sob a licença ISC.
-
-## 👥 Equipe
-
-Desenvolvido como projeto de aprendizado em Node.js com foco em:
-- Arquitetura limpa
-- Testes automatizados
-- Documentação completa
-- Boas práticas de desenvolvimento
-
----
-
-**Acesse a documentação interativa:** [http://localhost:5000/api-docs](http://localhost:5000/api-docs)
+- Para mais detalhes de implementação, consulte a página `docs/Architecture.md`. Obrigado pela atenção!
