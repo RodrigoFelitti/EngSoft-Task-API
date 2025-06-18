@@ -45,22 +45,14 @@ const router = express.Router();
  *         description: Dados inválidos ou campos obrigatórios ausentes
  *         content:
  *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Error'
  *             example:
  *               error: "Title, status e assignee são obrigatórios"
  *       401:
  *         description: Token inválido ou não fornecido
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Error'
  *       404:
  *         description: Usuário responsável não encontrado
  *         content:
  *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Error'
  *             example:
  *               error: "Usuário responsável não encontrado"
  */
@@ -123,10 +115,6 @@ router.post('/', authenticateToken, createTask);
  *                 deadline: "2025-01-15"
  *       401:
  *         description: Token inválido ou não fornecido
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Error'
  */
 router.get('/filter', authenticateToken, getTasksWithFilters);
 
@@ -169,22 +157,14 @@ router.get('/filter', authenticateToken, getTasksWithFilters);
  *         description: ID do usuário não fornecido
  *         content:
  *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Error'
  *             example:
  *               error: "ID do usuário é obrigatório"
  *       401:
  *         description: Token inválido ou não fornecido
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Error'
  *       404:
  *         description: Usuário não encontrado
  *         content:
  *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Error'
  *             example:
  *               error: "Usuário não encontrado"
  */
@@ -227,16 +207,10 @@ router.get('/by-assignee', authenticateToken, getTasksByAssignee);
  *         description: Tarefa não encontrada
  *         content:
  *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Error'
  *             example:
  *               error: "Tarefa não encontrada"
  *       401:
  *         description: Token inválido ou não fornecido
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Error'
  */
 router.get('/:id', authenticateToken, getTask);
 
@@ -270,16 +244,10 @@ router.get('/:id', authenticateToken, getTask);
  *         description: Tarefa não encontrada
  *         content:
  *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Error'
  *             example:
  *               error: "Tarefa não encontrada"
  *       401:
  *         description: Token inválido ou não fornecido
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Error'
  */
 router.delete('/:id', authenticateToken, deleteTask);
 
@@ -326,24 +294,16 @@ router.delete('/:id', authenticateToken, deleteTask);
  *         description: Dados inválidos
  *         content:
  *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Error'
  *             example:
  *               error: "Dados inválidos"
  *       404:
  *         description: Tarefa não encontrada
  *         content:
  *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Error'
  *             example:
  *               error: "Tarefa não encontrada"
  *       401:
  *         description: Token inválido ou não fornecido
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Error'
  */
 router.put('/:id', authenticateToken,  updateTask);
 

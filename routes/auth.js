@@ -31,16 +31,12 @@ const router = express.Router();
  *         description: Dados inválidos
  *         content:
  *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Error'
  *             example:
  *               error: "Username é obrigatório"
  *       401:
  *         description: Usuário não encontrado
  *         content:
  *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Error'
  *             example:
  *               error: "Usuário não encontrado"
  */
@@ -60,16 +56,12 @@ router.post('/login', loginUser);
  *         description: Logout realizado com sucesso
  *         content:
  *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Success'
  *             example:
  *               message: "Logged out successfully"
  *       401:
  *         description: Token inválido ou não fornecido
  *         content:
  *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Error'
  *             example:
  *               error: "Token inválido"
  */

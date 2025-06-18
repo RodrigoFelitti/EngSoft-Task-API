@@ -35,16 +35,10 @@ const router = express.Router();
  *         description: Dados inválidos ou campos obrigatórios ausentes
  *         content:
  *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Error'
  *             example:
  *               error: "Username e email são obrigatórios"
  *       401:
  *         description: Token inválido ou não fornecido
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Error'
  */
 router.post('/', authenticateToken, createUser);
 
@@ -82,16 +76,10 @@ router.post('/', authenticateToken, createUser);
  *         description: Usuário não encontrado
  *         content:
  *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Error'
  *             example:
  *               error: "Usuário não encontrado"
  *       401:
  *         description: Token inválido ou não fornecido
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Error'
  */
 router.get('/:id', authenticateToken, getUser);
 
@@ -125,16 +113,10 @@ router.get('/:id', authenticateToken, getUser);
  *         description: Usuário não encontrado
  *         content:
  *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Error'
  *             example:
  *               error: "Usuário não encontrado"
  *       401:
  *         description: Token inválido ou não fornecido
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Error'
  */
 router.delete('/:id', authenticateToken, deleteUser);
 
@@ -178,24 +160,16 @@ router.delete('/:id', authenticateToken, deleteUser);
  *         description: Dados inválidos
  *         content:
  *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Error'
  *             example:
  *               error: "Dados inválidos"
  *       404:
  *         description: Usuário não encontrado
  *         content:
  *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Error'
  *             example:
  *               error: "Usuário não encontrado"
  *       401:
  *         description: Token inválido ou não fornecido
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Error'
  */
 router.put('/:id', authenticateToken, updateUser);
 
