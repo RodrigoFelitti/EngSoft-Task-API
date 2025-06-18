@@ -19,6 +19,8 @@
     "jsonwebtoken": "^9.0.2",
     "lodash": "^4.17.21",
     "lowdb": "^7.0.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
     "uuid": "^11.1.0",
     "winston": "^3.17.0"
   },
