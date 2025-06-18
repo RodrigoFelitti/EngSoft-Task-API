@@ -1,5 +1,4 @@
 import jwt from 'jsonwebtoken';
-import { users, setUsers } from '../data/users.js';
 import * as userService from '../services/userService.js'
 import * as authService from '../services/authService.js'
 

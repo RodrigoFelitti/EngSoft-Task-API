@@ -1,5 +1,4 @@
- import { v4 as uuid } from 'uuid';
-import { users, setUsers } from '../data/users.js';
+import { v4 as uuid } from 'uuid';
 import { log } from '../middlewares/logger.js';
 import * as userService from '../services/userService.js'
 
