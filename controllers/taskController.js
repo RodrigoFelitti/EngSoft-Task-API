@@ -7,7 +7,7 @@ import { notifyDiscord } from '../middlewares/discordNotifier.js';
 
 export const createTask = async (req, res) => {
     const task = req.body;
-    const { title, status, assignee } = task;
+    const { title, status, assignee, descricao } = task;
 
     log(`Attempt to create task: ${JSON.stringify(task)}`);
 
@@ -23,7 +23,7 @@ export const createTask = async (req, res) => {
     }
 
     const id = uuid();
-    const newTask = { id, title, status, assignee };
+    const newTask = { id, title, status, assignee, descricao: descricao || '' };
     await taskService.createTask(newTask);
 
     const username = await userService.getUserById(assignee);
@@ -46,6 +46,7 @@ export const getTask = async (req, res) => {
         id: task.id,
         title: task.title,
         status: task.status,
+        descricao: task.descricao || '',
         assignee: user ? {
             id: user.id,
             username: user.username,
@@ -81,7 +82,8 @@ export const updateTask = async (req, res) => {
         ...task,
         title: req.body.title,
         status: req.body.status,
-        assignee: req.body.assignee
+        assignee: req.body.assignee,
+        descricao: req.body.descricao || task.descricao || ''
     };
 
     await taskService.updateTask(req.params.id, updatedTask);
@@ -116,6 +118,7 @@ export const getTasksByAssignee = async (req, res) => {
         id: task.id,
         title: task.title,
         status: task.status,
+        descricao: task.descricao || '',
         assignee: {
             id: user.id,
             username: user.username,

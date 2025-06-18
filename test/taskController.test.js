@@ -64,7 +64,8 @@ describe('Task Controller', () => {
         const taskData = {
             title: 'Estudar para a prova',
             status: 'pending',
-            assignee: userId
+            assignee: userId,
+            descricao: 'Preciso estudar matemática para a prova final'
         };
 
         const res = await request(app)
@@ -76,7 +77,8 @@ describe('Task Controller', () => {
         expect(res.body).toMatchObject({
             title: 'Estudar para a prova',
             status: 'pending',
-            assignee: userId
+            assignee: userId,
+            descricao: 'Preciso estudar matemática para a prova final'
         });
         expect(res.body.id).toBeDefined();
 
@@ -90,6 +92,7 @@ describe('Task Controller', () => {
             id: res.body.id,
             title: 'Estudar para a prova',
             status: 'pending',
+            descricao: 'Preciso estudar matemática para a prova final',
             assignee: {
                 id: userId,
                 username: 'TaskUser',
@@ -104,6 +107,38 @@ describe('Task Controller', () => {
 
         expect(deleteRes.status).toBe(200);
         expect(deleteRes.text).toBe('done');
+    });
+
+    test('POST /tasks - criar task sem descricao', async () => {
+        // Cria um usuário para este teste específico
+        const userRes = await request(app)
+            .post('/users')
+            .set('Authorization', `Bearer ${token}`)
+            .send({ username: 'TaskUser2', age: 25 });
+
+        expect(userRes.status).toBe(201);
+
+        const user = await userService.getUserByUsername('TaskUser2');
+        const userId = user.id;
+
+        const taskData = {
+            title: 'Fazer exercícios',
+            status: 'doing',
+            assignee: userId
+        };
+
+        const res = await request(app)
+            .post('/tasks')
+            .set('Authorization', `Bearer ${token}`)
+            .send(taskData);
+
+        expect(res.status).toBe(201);
+        expect(res.body).toMatchObject({
+            title: 'Fazer exercícios',
+            status: 'doing',
+            assignee: userId,
+            descricao: ''
+        });
     });
 
     test('GET /tasks/:id - buscar task inexistente', async () => {
