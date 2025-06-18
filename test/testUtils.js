@@ -5,7 +5,11 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Cria um arquivo de banco de dados temporário para cada teste
+/*
+    cada teste tem um banco de dados temporário
+    para garantir que os testes não afetem o banco de dados principal
+    usamos mocks para o banco de dados dos testes e depois limpamos o banco de dados
+*/
 export const createTempDb = () => {
     const tempDbPath = path.join(__dirname, `../temp-db-${Date.now()}-${Math.random()}.json`);
     
@@ -26,14 +30,12 @@ export const createTempDb = () => {
     return tempDbPath;
 };
 
-// Remove o arquivo temporário
 export const cleanupTempDb = (dbPath) => {
     if (fs.existsSync(dbPath)) {
         fs.unlinkSync(dbPath);
     }
 };
 
-// Mock do banco de dados em memória
 export const createMockDb = () => {
     return {
         data: {

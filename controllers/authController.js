@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import * as userService from '../services/userService.js'
 import * as authService from '../services/authService.js'
 
-const JWT_SECRET = 'senha'; // Você deve mover isso para variável de ambiente em produção
+const JWT_SECRET = 'senha';
 
 // POST /auth/login
 export const loginUser = async (req, res) => {

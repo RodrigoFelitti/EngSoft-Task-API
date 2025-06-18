@@ -36,3 +36,27 @@ export const getTasksByAssignee = async (assigneeId) => {
     await db.read();
     return db.data.tasks.filter(task => task.assignee === assigneeId);
 };
+
+export const getTasksWithFilters = async (filters) => {
+    await db.read();
+    let filteredTasks = db.data.tasks;
+
+    if (filters.status) {
+        filteredTasks = filteredTasks.filter(task => task.status === filters.status);
+    }
+
+    if (filters.prioridade) {
+        filteredTasks = filteredTasks.filter(task => (task.prioridade || 'normal') === filters.prioridade);
+    }
+
+    if (filters.deadlineAfter) {
+        const deadlineDate = new Date(filters.deadlineAfter);
+        filteredTasks = filteredTasks.filter(task => {
+            if (!task.deadline) return false;
+            const taskDeadline = new Date(task.deadline);
+            return taskDeadline >= deadlineDate;
+        });
+    }
+
+    return filteredTasks;
+};
