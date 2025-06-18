@@ -66,7 +66,9 @@ describe('Task Controller', () => {
             title: 'Estudar para a prova',
             status: 'pending',
             assignee: userId,
-            descricao: 'Preciso estudar matemática para a prova final'
+            descricao: 'Preciso estudar matemática para a prova final',
+            prioridade: 'alta',
+            deadline: '2024-12-31'
         };
 
         const res = await request(app)
@@ -79,7 +81,9 @@ describe('Task Controller', () => {
             title: 'Estudar para a prova',
             status: 'pending',
             assignee: userId,
-            descricao: 'Preciso estudar matemática para a prova final'
+            descricao: 'Preciso estudar matemática para a prova final',
+            prioridade: 'alta',
+            deadline: '2024-12-31'
         });
         expect(res.body.id).toBeDefined();
 
@@ -94,10 +98,13 @@ describe('Task Controller', () => {
             title: 'Estudar para a prova',
             status: 'pending',
             descricao: 'Preciso estudar matemática para a prova final',
+            prioridade: 'alta',
+            deadline: '2024-12-31',
             assignee: {
                 id: userId,
                 username: 'TaskUser',
-                age: 30
+                age: 30,
+                email: 'taskuser@email.com'
             }
         });
 
@@ -138,7 +145,9 @@ describe('Task Controller', () => {
             title: 'Fazer exercícios',
             status: 'doing',
             assignee: userId,
-            descricao: ''
+            descricao: '',
+            prioridade: 'normal',
+            deadline: null
         });
     });
 
