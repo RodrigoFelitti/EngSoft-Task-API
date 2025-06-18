@@ -65,7 +65,13 @@ Buscamos garantir estabilidade e simplicidade na implementação evitando over-e
    npm start
    ```
 
-4. **Acesse a documentação:**
+4. **Crie um arquivo .env:**
+- Crie um servidor no discord para fins de teste, ou adicione uma integração com webhooks
+- Pode consultar como fazer isso pela [documentação do discord](https://support.discord.com/hc/pt-br/articles/228383668-Usando-Webhooks)
+- Crie um arquivo .env na root do projeto e adicione o seguinte trecho `DISCORD_WEBHOOK_URL= {link do webhook criado}`
+- Isso garante que nenhum erro ocorrerá quando o webhook for chamado.
+
+5. **Acesse a documentação:**
    - Swagger UI: `http://localhost:5000/api-docs`
    - API: `http://localhost:5000`
 
