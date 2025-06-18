@@ -99,7 +99,6 @@ export const updateTask = async (req, res) => {
         deadline: req.body.deadline || task.deadline || null
     };
 
-    // Verificar se o novo assignee existe
     const user = await userService.getUserById(updatedTask.assignee);
     if (!user) {
         log(`Update failed - New assignee not found: assignee=${updatedTask.assignee}`);
@@ -116,7 +115,6 @@ export const updateTask = async (req, res) => {
 };
 
 // GET /tasks?assignedTo=someUserId
-
 export const getTasksByAssignee = async (req, res) => {
     const { assignedTo } = req.query;
 
@@ -162,7 +160,6 @@ export const getTasksWithFilters = async (req, res) => {
             deadlineAfter
         });
 
-        // Busca informações dos usuários para cada task
         const tasksWithUsers = await Promise.all(
             filteredTasks.map(async (task) => {
                 const user = await userService.getUserById(task.assignee);
