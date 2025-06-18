@@ -29,6 +29,9 @@ const validateAndFixDb = (data) => {
     if (!Array.isArray(validatedData.tasks)) validatedData.tasks = [];
     if (!Array.isArray(validatedData.blacklistedTokens)) validatedData.blacklistedTokens = [];
     
+    // Garante que todos os usuários tenham campo email
+    validatedData.users = validatedData.users.map(u => ({ ...u, email: u.email || '' }));
+
     // Remove tokens inválidos
     validatedData.blacklistedTokens = validatedData.blacklistedTokens.filter(token => 
         token && token !== 'undefined' && typeof token === 'string'

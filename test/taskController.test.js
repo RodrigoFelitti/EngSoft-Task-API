@@ -39,7 +39,8 @@ beforeEach(async () => {
             {
                 id: '1',
                 username: 'admin',
-                age: 30
+                age: 30,
+                email: 'admin@email.com'
             }
         ],
         tasks: [],
@@ -54,7 +55,7 @@ describe('Task Controller', () => {
         const userRes = await request(app)
             .post('/users')
             .set('Authorization', `Bearer ${token}`)
-            .send({ username: 'TaskUser', age: 30 });
+            .send({ username: 'TaskUser', age: 30, email: 'taskuser@email.com' });
 
         expect(userRes.status).toBe(201);
 
@@ -114,7 +115,7 @@ describe('Task Controller', () => {
         const userRes = await request(app)
             .post('/users')
             .set('Authorization', `Bearer ${token}`)
-            .send({ username: 'TaskUser2', age: 25 });
+            .send({ username: 'TaskUser2', age: 25, email: 'taskuser2@email.com' });
 
         expect(userRes.status).toBe(201);
 

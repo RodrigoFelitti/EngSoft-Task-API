@@ -15,8 +15,10 @@ export const createUser = async (userData) => {
   await db.read();
 
   const newUser = {
-    id: uuid(),
-    ...userData
+    id: userData.id || uuid(),
+    username: userData.username,
+    age: userData.age,
+    email: userData.email
   };
 
   db.data.users.push(newUser);
@@ -32,6 +34,7 @@ export const updateUser = async (id, updatedData) => {
 
   user.username = updatedData.username;
   user.age = updatedData.age;
+  user.email = updatedData.email;
 
   await db.write();
   return user;

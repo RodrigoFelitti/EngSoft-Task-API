@@ -30,7 +30,8 @@ beforeEach(async () => {
             {
                 id: '1',
                 username: 'admin',
-                age: 30
+                age: 30,
+                email: 'admin@email.com'
             }
         ],
         tasks: [],

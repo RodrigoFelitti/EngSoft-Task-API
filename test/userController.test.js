@@ -51,7 +51,7 @@ describe('User Controller', () => {
         const res = await request(app)
             .post('/users')
             .set('Authorization', `Bearer ${token}`)
-            .send({ username: 'Rodrigo', age: 25 });
+            .send({ username: 'Rodrigo', age: 25, email: 'rodrigo@email.com' });
 
         expect(res.status).toBe(201);
         expect(res.text).toBe('done');
@@ -60,6 +60,7 @@ describe('User Controller', () => {
         expect(user).toBeTruthy();
         expect(user.username).toBe('Rodrigo');
         expect(user.age).toBe(25);
+        expect(user.email).toBe('rodrigo@email.com');
     });
 
     test('GET /users/:id - buscar usuário existente', async () => {
@@ -67,7 +68,7 @@ describe('User Controller', () => {
         const createRes = await request(app)
             .post('/users')
             .set('Authorization', `Bearer ${token}`)
-            .send({ username: 'Rodrigo', age: 25 });
+            .send({ username: 'Rodrigo', age: 25, email: 'rodrigo@email.com' });
 
         expect(createRes.status).toBe(201);
 
@@ -80,7 +81,7 @@ describe('User Controller', () => {
             .set('Authorization', `Bearer ${token}`);
 
         expect(res.status).toBe(200);
-        expect(res.body).toMatchObject({ username: 'Rodrigo', age: 25 });
+        expect(res.body).toMatchObject({ username: 'Rodrigo', age: 25, email: 'rodrigo@email.com' });
     });
 
     test('DELETE /users/:id - deletar usuário', async () => {
@@ -88,7 +89,7 @@ describe('User Controller', () => {
         const createRes = await request(app)
             .post('/users')
             .set('Authorization', `Bearer ${token}`)
-            .send({ username: 'Rodrigo', age: 25 });
+            .send({ username: 'Rodrigo', age: 25, email: 'rodrigo@email.com' });
 
         expect(createRes.status).toBe(201);
 
